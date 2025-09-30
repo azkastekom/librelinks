@@ -3,8 +3,8 @@ FROM node:18-alpine AS base
 # Install dependencies only when needed
 FROM base AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-# Install OpenSSL 1.1 compatibility for Prisma
-RUN apk add --no-cache libc6-compat openssl1.1-compat
+# Install OpenSSL 3 for Prisma (Alpine 3.21 uses OpenSSL 3)
+RUN apk add --no-cache libc6-compat openssl
 
 WORKDIR /app
 
@@ -19,8 +19,8 @@ RUN npm ci --omit=dev --ignore-scripts
 FROM base AS builder
 WORKDIR /app
 
-# Install OpenSSL 1.1 compatibility for Prisma in builder stage
-RUN apk add --no-cache libc6-compat openssl1.1-compat
+# Install OpenSSL 3 for Prisma in builder stage
+RUN apk add --no-cache libc6-compat openssl
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -41,8 +41,8 @@ RUN npm run build
 FROM base AS runner
 WORKDIR /app
 
-# Install OpenSSL 1.1 compatibility for Prisma in runner stage
-RUN apk add --no-cache libc6-compat openssl1.1-compat
+# Install OpenSSL 3 for Prisma in runner stage
+RUN apk add --no-cache libc6-compat openssl
 
 ENV NODE_ENV=production
 
