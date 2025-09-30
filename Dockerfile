@@ -37,6 +37,9 @@ RUN npx prisma generate
 # Build the application
 RUN npm run build
 
+# Install sharp for image optimization in standalone mode
+RUN npm install sharp
+
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
@@ -63,6 +66,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 # Copy Prisma files for runtime
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@prisma ./node_modules/@prisma
+
+# Copy sharp for image optimization
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/sharp ./node_modules/sharp
 
 USER nextjs
 
