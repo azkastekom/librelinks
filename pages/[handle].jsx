@@ -97,7 +97,7 @@ const ProfilePage = () => {
       <Script
         defer
         src="https://unpkg.com/@tinybirdco/flock.js"
-        data-host={process.env.ANALYTICS_BASE_URL}
+        data-host="https://api.us-east.tinybird.co"
         data-token={process.env.NEXT_PUBLIC_DATA_TOKEN}
       />
       
