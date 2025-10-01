@@ -6,9 +6,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const {handle} = req.query;
-    const endpoint =
-      'https://api.tinybird.co/v0/pipes/libre_location_tracking.json';
+    const { handle } = req.query;
+    const endpoint = `${process.env.ANALYTICS_BASE_URL}/v0/pipes/libre_location_tracking.json`;
 
     if (!handle || typeof handle !== 'string') {
       return res.status(404).end();
