@@ -33,7 +33,8 @@ RUN npm ci
 
 # Generate Prisma client
 RUN npx prisma generate
-
+ARG NEXT_PUBLIC_DATA_TOKEN
+ENV NEXT_PUBLIC_DATA_TOKEN=${NEXT_PUBLIC_DATA_TOKEN}
 # Build the application
 RUN npm run build
 
