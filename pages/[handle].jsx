@@ -95,13 +95,12 @@ const ProfilePage = () => {
         <title> @{handle} | Librelinks</title>
       </Head>
       {!query.isIframe ? (
-        // <Script
-        //   defer
-        //   src="https://unpkg.com/@tinybirdco/flock.js"
-        //   data-host="https://api.tinybird.co"
-        //   data-token={process.env.NEXT_PUBLIC_DATA_TOKEN}
-        // />
-      <></>
+        <Script
+          defer
+          src="https://unpkg.com/@tinybirdco/flock.js"
+          data-host={process.env.ANALYTICS_BASE_URL}
+          data-token={process.env.NEXT_PUBLIC_DATA_TOKEN}
+        />
       ) : (
         ''
       )}
