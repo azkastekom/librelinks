@@ -187,25 +187,7 @@ const ProfilePage = () => {
           )}
         </div>
         <div className="my-10 lg:my-24" />
-        {userLinks?.length > 0 ? (
-          <footer className="relative left-1/2 bottom-0 transform -translate-x-1/2 w-[200px]">
-            <p
-              style={{ color: theme.accent }}
-              className="text-sm text-semibold text-center w lg:text-lg"
-            >
-              Made with{' '}
-              <Link
-                className="font-semibold"
-                target="_blank"
-                href="https://librelinks.vercel.app/"
-              >
-                Librelinks
-              </Link>
-            </p>
-          </footer>
-        ) : (
-          ''
-        )}
+        
       </section>
     </>
   );
