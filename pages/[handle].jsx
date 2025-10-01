@@ -94,16 +94,13 @@ const ProfilePage = () => {
       <Head>
         <title> @{handle} | Librelinks</title>
       </Head>
-      {!query.isIframe ? (
-        <Script
-          defer
-          src="https://unpkg.com/@tinybirdco/flock.js"
-          data-host={process.env.ANALYTICS_BASE_URL}
-          data-token={process.env.NEXT_PUBLIC_DATA_TOKEN}
-        />
-      ) : (
-        ''
-      )}
+      <Script
+        defer
+        src="https://unpkg.com/@tinybirdco/flock.js"
+        data-host={process.env.ANALYTICS_BASE_URL}
+        data-token={process.env.NEXT_PUBLIC_DATA_TOKEN}
+      />
+      
       <section
         style={{ background: theme.primary }}
         className="h-[100vh] w-[100vw] no-scrollbar overflow-auto"
